@@ -1,0 +1,101 @@
+Chapter 7 Programming Exercise 4. Speeding Violation Calculator
+Design a program that calculates and displays the number of miles per hour
+    over the speed limit that a speeding driver was doing. The program should
+    ask for the speed limit and the driver’s speed. Validate the input as
+    follows:
+    ● The speed limit should be at least 20, but not greater than 70.
+    ● The driver’s speed should be at least the value entered for the
+      speed limit
+      (otherwise the driver was not speeding).
+    Once correct data has been entered, the program should calculate and
+    display the number of miles per hour over the speed limit that the driver
+    was doing.
+
+
+Pseudocode
+----------
+// Global Constants for speed limit constraints.
+Constant Integer MIN_SPEED = 20
+Constant Integer MAX_SPEED = 70
+
+
+Module main()
+    // Local variables
+    Declare Integer speedLimit = 0
+    Declare Integer driverSpeed = 0
+    Declare String judgement = ''
+
+    // Display intro to user.
+     Call fluffy_intro()
+
+    // Get the speed limit.
+    Set speedLimit = validate_user_input("speed limit")
+
+    // Get the driver's speed.
+    Set driverSpeed = validate_user_input("driver's speed")
+
+    // Calculate driver's speed in reference to the speed limit.
+    Set judgement = pass_judgement_on_driver(speedLimit, driverSpeed)
+
+    // Display results.
+    Call display_results(judgement)
+End Module
+
+// Displays an introduction to the program and describes what it does
+Module fluffy_intro()
+    Display 'Welcome to the Speeding Violation Calculator.'
+    Display 'This program will ask for the speed limit and how fast the'
+    Display 'driver was going.  It will then report either how many'
+    Display 'miles per hour over the speed limit the driver was going or'
+    Display 'that the driver was not speeding.'
+End Module
+
+// Requests an input from the user based on the parameter.  Then tests
+//  the input and if invalid requests a new input.  Returns the valid
+//  input.
+Function Integer validate_user_input(String promptTerm)
+    // Local variable
+    Declare Integer userInput
+
+    // User input prompt and initial assignment
+    Set userInput = prompt_user_for_item(promptTerm)
+    If promptTerm == "speed limit" Then
+        // This loop repeats until a valid speed limit is entered.
+        While MAX_SPEED < userInput Or MIN_SPEED > userInputs Then
+            Display "Invalid ", promptTerm,". The maximum speed limit"
+            Display "is 70mph and minimum is 20mph."
+            Set userInput = prompt_user_for_item(promptTerm)
+        End While
+    End If
+    Return userInput
+End Function
+
+// prompt_user_for_item accepts a string as an argument and returns the input
+// as a String.
+Function Integer prompt_user_for_item(String promptTerm)
+    Display "Please enter the ", pomptTerm, "."
+    // The user input is returned in an anonymous variable
+    Return Input
+End Function
+
+Function String pass_judgement_on_driver(Integer speedLimit,
+                                         Integer driverSpeed)
+    // Local variables
+    Declare String judgement = ''
+    Declare Integer overSpeed = 0
+
+    // Test if the driver was actually speeding.
+    If driverSpeed <= speedLimit Then
+        Set judgement = "The driver was not speeding.  He is free to go."
+    Else
+        // The driver must have been speeding.
+        Set overSpeed = driverSpeed - speedLimit
+        Set judgement = "The driver was going ", overSpeed,"mph over the
+                        limit.  Book 'em Danno!"
+    End If
+    Return judgement
+End Function
+
+Module display_results(String judgement)
+    Display judgement
+End Module
