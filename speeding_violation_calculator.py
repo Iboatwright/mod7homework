@@ -47,14 +47,31 @@ def validate_user_input(promptTerm):
     # Local variable
     userInput = 0
 
-    # User input prompt and initial assignment
-    userInput = prompt_user_for_item(promptTerm)
+    # Returns a valid speed integer.
+    userInput = test_input(promptTerm)
+
+    # Test if the entered speed limit is within the constraints.
     if promptTerm == "speed limit":
         # This loop repeats until a valid speed limit is entered.
         while MAX_SPEED < userInput or MIN_SPEED > userInput:
             print("Invalid ", promptTerm,". The maximum speed limit")
             print("is 70mph and minimum is 20mph.")
-            userInput = prompt_user_for_item(promptTerm)
+            userInput = test_input(promptTerm)
+    return userInput
+
+
+def test_input(promptTerm):
+    # Local variable
+    userInput = 0
+
+    # Loops until the user enters a valid integer then the break statement
+    #   exits the loop and the input is returned to the calling module.
+    while True:
+        try:
+            userInput = int(prompt_user_for_item(promptTerm))
+            break
+        except:
+            print("Error: Invalid input.  Only integers are accepted.")
     return userInput
 
 
@@ -62,7 +79,7 @@ def validate_user_input(promptTerm):
 # as a String.
 def prompt_user_for_item(promptTerm):
     # The user input is returned in an anonymous variable
-    return int(input("Please enter the " + promptTerm + "."))
+    return input("Please enter the " + promptTerm + ".")
 
 
 # This compares the driver's speed to the speed limit and returns the results
@@ -78,8 +95,8 @@ def pass_judgement_on_driver(speedLimit, driverSpeed):
     else:
         # The driver must have been speeding.
         overSpeed = driverSpeed - speedLimit
-        judgement = "The driver was going " + overSpeed + "mph over the\n"
-        judgement += "limit.  Book 'em Danno!"
+        judgement = "The driver was going {}mph ".format(overSpeed)
+        judgement += "over the limit.\nBook 'em Danno!"
     return judgement
 
 
