@@ -79,7 +79,7 @@ def test_input(promptTerm):
 # as a String.
 def prompt_user_for_item(promptTerm):
     # The user input is returned in an anonymous variable
-    return input("Please enter the " + promptTerm + ".")
+    return input("Please enter the " + promptTerm + ".\n   >>> ")
 
 
 # This compares the driver's speed to the speed limit and returns the results
