@@ -38,8 +38,12 @@ def main():
     
 # Displays an introduction to the program and describes what it does.
 def fluffy_intro():
-    pass
-
+    print('Welcome to the Speeding Violation Calculator.')
+    print('This program will ask for the speed limit and how fast the')
+    print('driver was going.  It will then report either how many')
+    print('miles per hour over the speed limit the driver was going or')
+    print('that the driver was not speeding.')
+    return None
 
 # This requests the user to input the promptTerm and tests if their input
 #   is valid.  It returns the validated input.
@@ -104,6 +108,7 @@ def pass_judgement_on_driver(speedLimit, driverSpeed):
 #   on how to handle the situation.
 def display_results(judgement):
     print(judgement)
+    return None
 
 
 # Call main module
